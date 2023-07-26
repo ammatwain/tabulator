@@ -10249,7 +10249,7 @@
 		constructor(table){
 			super(table);
 
-			this.indent = 10;
+			this.indent = 16;
 			this.field = "";
 			this.collapseEl = null;
 			this.expandEl = null;
@@ -10380,7 +10380,7 @@
 
 			if(force){
 				rows = this.table.rowManager.getRows();
-				
+
 				rows.forEach((row) => {
 					this.reinitializeRowChildren(row);
 				});
@@ -10392,7 +10392,7 @@
 
 			this.elementField = this.table.options.dataTreeElementColumn || (firstCol ? firstCol.field : false);
 		}
-		
+
 		getRowChildren(row){
 			return this.getTreeChildren(row, true);
 		}
@@ -10487,16 +10487,20 @@
 					el.insertBefore(config.branchEl, el.firstChild);
 
 					if(this.table.rtl){
-						config.branchEl.style.marginRight = (((config.branchEl.offsetWidth + config.branchEl.style.marginLeft) * (config.index - 1)) + (config.index * this.indent)) + "px";
+						config.branchEl.style.marginRight = (config.index * this.indent) + "px";
+						//					config.branchEl.style.marginRight = (((config.branchEl.offsetWidth + config.branchEl.style.marginLeft) * (config.index - 1)) + (config.index * this.indent)) + "px";
 					}else {
-						config.branchEl.style.marginLeft = (((config.branchEl.offsetWidth + config.branchEl.style.marginRight) * (config.index - 1)) + (config.index * this.indent)) + "px";
+						config.branchEl.style.marginLeft = (config.index * this.indent) + "px";
+						//					config.branchEl.style.marginLeft = (((config.branchEl.offsetWidth + config.branchEl.style.marginRight) * (config.index - 1)) + (config.index * this.indent)) + "px";
 					}
 				}else {
 
 					if(this.table.rtl){
-						el.style.paddingRight = parseInt(window.getComputedStyle(el, null).getPropertyValue('padding-right')) + (config.index * this.indent) + "px";
+						el.style.paddingRight = (config.index * this.indent) + "px";
+						//					el.style.paddingRight = parseInt(window.getComputedStyle(el, null).getPropertyValue('padding-right')) + (config.index * this.indent) + "px";
 					}else {
-						el.style.paddingLeft = parseInt(window.getComputedStyle(el, null).getPropertyValue('padding-left')) + (config.index * this.indent) + "px";
+						el.style.paddingLeft = (config.index * this.indent) + "px";
+						//					el.style.paddingLeft = parseInt(window.getComputedStyle(el, null).getPropertyValue('padding-left')) + (config.index * this.indent) + "px";
 					}
 				}
 			}
